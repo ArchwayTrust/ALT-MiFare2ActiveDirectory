@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Security;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
@@ -10,18 +11,40 @@ namespace MiFare2ActiveDirectory
     public partial class MainForm : Form
     {
         private readonly AppSettingsManager _appSettingsManager;
+        private string _svcADusername;
+        private string _svcADpassword;
 
         public MainForm()
         {
             InitializeComponent();
             _appSettingsManager = new AppSettingsManager();
+            _svcADusername = String.Empty;
+            _svcADpassword = String.Empty;
+
             ReadSettings();
         }
 
         private void ReadSettings()
         {
-            string _svcADusername = _appSettingsManager.GetEncryptedSetting("SeviceAccount", "Username");
-            string _svcADpassword = _appSettingsManager.GetEncryptedSetting("SeviceAccount", "Password");
+            _svcADusername = _appSettingsManager.GetEncryptedSetting("SeviceAccount", "Username");
+            _svcADpassword = _appSettingsManager.GetEncryptedSetting("SeviceAccount", "Password");
+
+            Tb_svcUsername.Text = _svcADusername;
+            Tb_svcPassword.Text = _svcADpassword;
+        }
+
+        private void SaveSettings()
+        {
+            _svcADusername = Tb_svcUsername.Text;
+            _svcADpassword = Tb_svcPassword.Text;
+
+            _appSettingsManager.SetEncryptedSetting("SeviceAccount", "Username", _svcADusername);
+            _appSettingsManager.SetEncryptedSetting("SeviceAccount", "Password", _svcADpassword);
+        }
+
+        private void Btn_UpdateSvcAccount_Click(object sender, EventArgs e)
+        {
+            SaveSettings();
         }
     }
 }
