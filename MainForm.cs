@@ -1,8 +1,8 @@
 namespace MiFare2ActiveDirectory
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }

@@ -1,6 +1,6 @@
 ﻿namespace MiFare2ActiveDirectory
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
