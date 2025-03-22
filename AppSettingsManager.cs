@@ -68,4 +68,3 @@ namespace MiFare2ActiveDirectory
         }
     }
 }
-

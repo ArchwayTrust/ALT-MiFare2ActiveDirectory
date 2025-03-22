@@ -14,6 +14,8 @@ namespace MiFare2ActiveDirectory
         private string _svcADusername;
         private string _svcADpassword;
 
+        private readonly AdService _adService;
+
         public MainForm()
         {
             InitializeComponent();
@@ -22,6 +24,9 @@ namespace MiFare2ActiveDirectory
             _svcADpassword = String.Empty;
 
             ReadSettings();
+
+            _adService = new AdService("BCA.internal", _svcADusername, _svcADpassword);
+
         }
 
         private void ReadSettings()
