@@ -71,7 +71,15 @@ namespace MiFare2ActiveDirectory
         {
             _cardNumber = cardNumber;
 
-            MessageBox.Show(_cardNumber);
+            // GUI on different thread so this handles that...
+            if (LblMiFareNumber.InvokeRequired)
+            {
+                LblMiFareNumber.Invoke(new Action(() => LblMiFareNumber.Text = _cardNumber));
+            }
+            else
+            {
+                LblMiFareNumber.Text = _cardNumber;
+            }
 
             // Optionally, you can also update the AD service with the card number
             // _adService.UpdateExtensionAttribute14("username", cardNumber);
