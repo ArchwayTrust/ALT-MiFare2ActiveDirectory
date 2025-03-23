@@ -26,18 +26,6 @@ namespace MiFare2ActiveDirectory.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string SvcUsername {
-            get {
-                return ((string)(this["SvcUsername"]));
-            }
-            set {
-                this["SvcUsername"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string SvcPassword {
             get {
                 return ((string)(this["SvcPassword"]));
@@ -56,6 +44,18 @@ namespace MiFare2ActiveDirectory.Properties {
             }
             set {
                 this["CardReaderId"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("test")]
+        public string SvcUsername {
+            get {
+                return ((string)(this["SvcUsername"]));
+            }
+            set {
+                this["SvcUsername"] = value;
             }
         }
     }

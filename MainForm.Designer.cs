@@ -32,6 +32,8 @@
             Tb_svcPassword = new TextBox();
             panel1 = new Panel();
             Btn_UpdateSvcAccount = new Button();
+            LblMiFareNumber = new Label();
+            LblCardReader = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -70,17 +72,38 @@
             Btn_UpdateSvcAccount.UseVisualStyleBackColor = true;
             Btn_UpdateSvcAccount.Click += Btn_UpdateSvcAccount_Click;
             // 
+            // LblMiFareNumber
+            // 
+            LblMiFareNumber.AutoSize = true;
+            LblMiFareNumber.Location = new Point(78, 76);
+            LblMiFareNumber.Name = "LblMiFareNumber";
+            LblMiFareNumber.Size = new Size(51, 15);
+            LblMiFareNumber.TabIndex = 4;
+            LblMiFareNumber.Text = "No Card";
+            // 
+            // LblCardReader
+            // 
+            LblCardReader.AutoSize = true;
+            LblCardReader.Location = new Point(91, 131);
+            LblCardReader.Name = "LblCardReader";
+            LblCardReader.Size = new Size(90, 15);
+            LblCardReader.TabIndex = 5;
+            LblCardReader.Text = "No Card Reader";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(LblCardReader);
+            Controls.Add(LblMiFareNumber);
             Controls.Add(panel1);
             Name = "MainForm";
             Text = "Form1";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -89,5 +112,7 @@
         private TextBox Tb_svcPassword;
         private Panel panel1;
         private Button Btn_UpdateSvcAccount;
+        private Label LblMiFareNumber;
+        private Label LblCardReader;
     }
 }
