@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35913.81 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiFare2ActiveDirectory", "MiFare2ActiveDirectory.csproj", "{26D5EB48-3B88-45C4-B3F3-E3DF2B801696}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiFare2ActiveDirectory", "MiFare2ActiveDirectory\MiFare2ActiveDirectory.csproj", "{26D5EB48-3B88-45C4-B3F3-E3DF2B801696}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
