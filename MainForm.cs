@@ -46,7 +46,14 @@ namespace MiFare2ActiveDirectory
                 Environment.Exit(1);
             }
 
-            _cardReaderName = _cardReaderNames[_cardReaderId];
+            try 
+            {
+                _cardReaderName = _cardReaderNames[_cardReaderId];
+            }
+            catch
+            { 
+                _cardReaderName = _cardReaderNames[0];
+            }
 
             CBCardReaders.DataSource = _cardReaderNames;
 
