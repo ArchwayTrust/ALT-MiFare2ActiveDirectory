@@ -16,7 +16,7 @@ namespace MiFare2ActiveDirectory
 
         private int _cardReaderId;
         private string _cardReaderName;
-        private string[] _cardReaderNames;
+        private readonly string[] _cardReaderNames;
 
 
         private string _cardNumber;
@@ -38,7 +38,7 @@ namespace MiFare2ActiveDirectory
             _adService = new AdService("BCA.internal", _svcADusername, _svcADpassword);
 
             _cardReader = new MiFareCardReader();
-            _cardReaderNames = _cardReader.GetAvailableReaders().ToArray();
+            _cardReaderNames = [.. _cardReader.GetAvailableReaders()];
 
             if (_cardReaderNames.Length == 0)
             {
@@ -80,6 +80,7 @@ namespace MiFare2ActiveDirectory
             _svcADusername = TBSvcUsername.Text;
             _svcADpassword = TBSvcPassword.Text;
             _cardReaderId = CBCardReaders.SelectedIndex;
+            _cardReaderName = _cardReaderNames[_cardReaderId];
 
             _appSettingsManager.SvcUsername = _svcADusername;
             _appSettingsManager.SvcPassword = _svcADpassword;
