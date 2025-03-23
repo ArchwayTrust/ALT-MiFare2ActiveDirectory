@@ -28,78 +28,142 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Tb_svcUsername = new TextBox();
-            Tb_svcPassword = new TextBox();
+            LBLMiFareNumber = new Label();
+            TBSvcUsername = new TextBox();
+            TBSvcPassword = new TextBox();
+            BTNUpdateSvcAccount = new Button();
+            CBCardReaders = new ComboBox();
+            LBLSvcUsername = new Label();
+            LBLSvcPassword = new Label();
+            LBLCardReaderSelection = new Label();
             panel1 = new Panel();
-            Btn_UpdateSvcAccount = new Button();
-            LblMiFareNumber = new Label();
-            LblCardReader = new Label();
+            TBUserToUpdate = new TextBox();
+            LBLUserToUpdate = new Label();
+            BTNWriteToAd = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // Tb_svcUsername
+            // LBLMiFareNumber
             // 
-            Tb_svcUsername.Location = new Point(89, 15);
-            Tb_svcUsername.Name = "Tb_svcUsername";
-            Tb_svcUsername.Size = new Size(196, 23);
-            Tb_svcUsername.TabIndex = 0;
+            LBLMiFareNumber.AutoSize = true;
+            LBLMiFareNumber.Location = new Point(38, 224);
+            LBLMiFareNumber.Name = "LBLMiFareNumber";
+            LBLMiFareNumber.Size = new Size(147, 15);
+            LBLMiFareNumber.TabIndex = 4;
+            LBLMiFareNumber.Text = "No card has been read yet.";
             // 
-            // Tb_svcPassword
+            // TBSvcUsername
             // 
-            Tb_svcPassword.Location = new Point(89, 56);
-            Tb_svcPassword.Name = "Tb_svcPassword";
-            Tb_svcPassword.PasswordChar = '*';
-            Tb_svcPassword.Size = new Size(196, 23);
-            Tb_svcPassword.TabIndex = 1;
+            TBSvcUsername.Location = new Point(176, 10);
+            TBSvcUsername.Name = "TBSvcUsername";
+            TBSvcUsername.Size = new Size(196, 23);
+            TBSvcUsername.TabIndex = 0;
+            // 
+            // TBSvcPassword
+            // 
+            TBSvcPassword.Location = new Point(176, 39);
+            TBSvcPassword.Name = "TBSvcPassword";
+            TBSvcPassword.PasswordChar = '*';
+            TBSvcPassword.Size = new Size(196, 23);
+            TBSvcPassword.TabIndex = 1;
+            // 
+            // BTNUpdateSvcAccount
+            // 
+            BTNUpdateSvcAccount.Location = new Point(176, 106);
+            BTNUpdateSvcAccount.Name = "BTNUpdateSvcAccount";
+            BTNUpdateSvcAccount.Size = new Size(196, 23);
+            BTNUpdateSvcAccount.TabIndex = 2;
+            BTNUpdateSvcAccount.Text = "Update Settings";
+            BTNUpdateSvcAccount.UseVisualStyleBackColor = true;
+            BTNUpdateSvcAccount.Click += Btn_UpdateSvcAccount_Click;
+            // 
+            // CBCardReaders
+            // 
+            CBCardReaders.FormattingEnabled = true;
+            CBCardReaders.Location = new Point(176, 68);
+            CBCardReaders.Name = "CBCardReaders";
+            CBCardReaders.Size = new Size(196, 23);
+            CBCardReaders.TabIndex = 6;
+            // 
+            // LBLSvcUsername
+            // 
+            LBLSvcUsername.AutoSize = true;
+            LBLSvcUsername.Location = new Point(17, 10);
+            LBLSvcUsername.Name = "LBLSvcUsername";
+            LBLSvcUsername.Size = new Size(148, 15);
+            LBLSvcUsername.TabIndex = 7;
+            LBLSvcUsername.Text = "Service Account Username";
+            // 
+            // LBLSvcPassword
+            // 
+            LBLSvcPassword.AutoSize = true;
+            LBLSvcPassword.Location = new Point(20, 39);
+            LBLSvcPassword.Name = "LBLSvcPassword";
+            LBLSvcPassword.Size = new Size(145, 15);
+            LBLSvcPassword.TabIndex = 8;
+            LBLSvcPassword.Text = "Service Account Password";
+            // 
+            // LBLCardReaderSelection
+            // 
+            LBLCardReaderSelection.AutoSize = true;
+            LBLCardReaderSelection.Location = new Point(99, 68);
+            LBLCardReaderSelection.Name = "LBLCardReaderSelection";
+            LBLCardReaderSelection.Size = new Size(71, 15);
+            LBLCardReaderSelection.TabIndex = 9;
+            LBLCardReaderSelection.Text = "Card Reader";
             // 
             // panel1
             // 
-            panel1.Controls.Add(Btn_UpdateSvcAccount);
-            panel1.Controls.Add(Tb_svcPassword);
-            panel1.Controls.Add(Tb_svcUsername);
-            panel1.Location = new Point(399, 108);
+            panel1.Controls.Add(LBLCardReaderSelection);
+            panel1.Controls.Add(LBLSvcPassword);
+            panel1.Controls.Add(LBLSvcUsername);
+            panel1.Controls.Add(CBCardReaders);
+            panel1.Controls.Add(BTNUpdateSvcAccount);
+            panel1.Controls.Add(TBSvcPassword);
+            panel1.Controls.Add(TBSvcUsername);
+            panel1.Location = new Point(405, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(319, 163);
+            panel1.Size = new Size(383, 134);
             panel1.TabIndex = 3;
             // 
-            // Btn_UpdateSvcAccount
+            // TBUserToUpdate
             // 
-            Btn_UpdateSvcAccount.Location = new Point(89, 114);
-            Btn_UpdateSvcAccount.Name = "Btn_UpdateSvcAccount";
-            Btn_UpdateSvcAccount.Size = new Size(196, 23);
-            Btn_UpdateSvcAccount.TabIndex = 2;
-            Btn_UpdateSvcAccount.Text = "Update Service Account";
-            Btn_UpdateSvcAccount.UseVisualStyleBackColor = true;
-            Btn_UpdateSvcAccount.Click += Btn_UpdateSvcAccount_Click;
+            TBUserToUpdate.Location = new Point(264, 261);
+            TBUserToUpdate.Name = "TBUserToUpdate";
+            TBUserToUpdate.Size = new Size(225, 23);
+            TBUserToUpdate.TabIndex = 5;
             // 
-            // LblMiFareNumber
+            // LBLUserToUpdate
             // 
-            LblMiFareNumber.AutoSize = true;
-            LblMiFareNumber.Location = new Point(78, 76);
-            LblMiFareNumber.Name = "LblMiFareNumber";
-            LblMiFareNumber.Size = new Size(51, 15);
-            LblMiFareNumber.TabIndex = 4;
-            LblMiFareNumber.Text = "No Card";
+            LBLUserToUpdate.AutoSize = true;
+            LBLUserToUpdate.Location = new Point(38, 264);
+            LBLUserToUpdate.Name = "LBLUserToUpdate";
+            LBLUserToUpdate.Size = new Size(220, 15);
+            LBLUserToUpdate.TabIndex = 6;
+            LBLUserToUpdate.Text = "Enter username to write card number to:";
             // 
-            // LblCardReader
+            // BTNWriteToAd
             // 
-            LblCardReader.AutoSize = true;
-            LblCardReader.Location = new Point(91, 131);
-            LblCardReader.Name = "LblCardReader";
-            LblCardReader.Size = new Size(90, 15);
-            LblCardReader.TabIndex = 5;
-            LblCardReader.Text = "No Card Reader";
+            BTNWriteToAd.Location = new Point(331, 301);
+            BTNWriteToAd.Name = "BTNWriteToAd";
+            BTNWriteToAd.Size = new Size(158, 23);
+            BTNWriteToAd.TabIndex = 7;
+            BTNWriteToAd.Text = "Update User in AD";
+            BTNWriteToAd.UseVisualStyleBackColor = true;
+            BTNWriteToAd.Click += BTNWriteToAd_Click;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(LblCardReader);
-            Controls.Add(LblMiFareNumber);
+            Controls.Add(BTNWriteToAd);
+            Controls.Add(LBLUserToUpdate);
+            Controls.Add(TBUserToUpdate);
+            Controls.Add(LBLMiFareNumber);
             Controls.Add(panel1);
             Name = "MainForm";
-            Text = "Form1";
+            Text = "ALT MiFare to Active Directory";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -107,12 +171,17 @@
         }
 
         #endregion
-
-        private TextBox Tb_svcUsername;
-        private TextBox Tb_svcPassword;
+        private Label LBLMiFareNumber;
+        private TextBox TBSvcUsername;
+        private TextBox TBSvcPassword;
+        private Button BTNUpdateSvcAccount;
+        private ComboBox CBCardReaders;
+        private Label LBLSvcUsername;
+        private Label LBLSvcPassword;
+        private Label LBLCardReaderSelection;
         private Panel panel1;
-        private Button Btn_UpdateSvcAccount;
-        private Label LblMiFareNumber;
-        private Label LblCardReader;
+        private TextBox TBUserToUpdate;
+        private Label LBLUserToUpdate;
+        private Button BTNWriteToAd;
     }
 }
