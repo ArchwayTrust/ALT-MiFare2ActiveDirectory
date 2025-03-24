@@ -43,7 +43,7 @@ namespace MiFare2ActiveDirectory
                     if (result.Properties.Contains("distinguishedName") && result.Properties["distinguishedName"][0] != null)
                     {
                         var ouValue = result.Properties["distinguishedName"][0]?.ToString();
-                        if (!string.IsNullOrEmpty(ouValue) && ouValue.StartsWith("OU=Staff,") && ouValue.Contains("OU=Users") && !ouValue.Contains("OU=Leavers"))
+                        if (!string.IsNullOrEmpty(ouValue) && (ouValue.StartsWith("OU=Staff,") || ouValue.StartsWith("OU=Bluecoat IT")) && ( ouValue.Contains("OU=User Resources") || (ouValue.Contains("OU=Archway Learning Trust Super System") && ouValue.Contains("OU=Users"))) && !ouValue.Contains("OU=Leavers"))
                         {
                             ous.Add(ouValue);
                         }
@@ -64,10 +64,11 @@ namespace MiFare2ActiveDirectory
             var users = new List<string>();
             try
             {
-                using var entry = new DirectoryEntry($"LDAP://{_domain}", _svcUsername, _svcPassword);
+                using var entry = new DirectoryEntry($"LDAP://{_domain}/{distinguishedName}", _svcUsername, _svcPassword);
                 using var searcher = new DirectorySearcher(entry)
                 {
-                    Filter = $"(&(objectClass=user)(objectCategory=person)(memberOf:1.2.840.113556.1.4.1941:={distinguishedName}))"
+                    Filter = "(&(objectClass=user)(objectCategory=person)(!(userAccountControl:1.2.840.113556.1.4.803:=2)))",
+                    SearchScope = SearchScope.Subtree
                 };
                 searcher.PropertiesToLoad.Add("sAMAccountName");
 
@@ -88,7 +89,9 @@ namespace MiFare2ActiveDirectory
                 Console.WriteLine($"Error retrieving users: {ex.Message}");
             }
 
-            return users;
+            var userList = users.ToList();
+            userList.Sort();
+            return userList;
         }
     }
 }

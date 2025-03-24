@@ -37,10 +37,10 @@
             LBLSvcPassword = new Label();
             LBLCardReaderSelection = new Label();
             panel1 = new Panel();
-            TBUserToUpdate = new TextBox();
             LBLUserToUpdate = new Label();
             BTNWriteToAd = new Button();
             CBAvailableOUs = new ComboBox();
+            CBADUsers = new ComboBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -127,21 +127,14 @@
             panel1.Size = new Size(383, 134);
             panel1.TabIndex = 3;
             // 
-            // TBUserToUpdate
-            // 
-            TBUserToUpdate.Location = new Point(264, 261);
-            TBUserToUpdate.Name = "TBUserToUpdate";
-            TBUserToUpdate.Size = new Size(225, 23);
-            TBUserToUpdate.TabIndex = 5;
-            // 
             // LBLUserToUpdate
             // 
             LBLUserToUpdate.AutoSize = true;
             LBLUserToUpdate.Location = new Point(38, 264);
             LBLUserToUpdate.Name = "LBLUserToUpdate";
-            LBLUserToUpdate.Size = new Size(220, 15);
+            LBLUserToUpdate.Size = new Size(224, 15);
             LBLUserToUpdate.TabIndex = 6;
-            LBLUserToUpdate.Text = "Enter username to write card number to:";
+            LBLUserToUpdate.Text = "Select username to write card number to:";
             // 
             // BTNWriteToAd
             // 
@@ -160,16 +153,25 @@
             CBAvailableOUs.Name = "CBAvailableOUs";
             CBAvailableOUs.Size = new Size(750, 23);
             CBAvailableOUs.TabIndex = 8;
+            CBAvailableOUs.SelectedIndexChanged += CBAvailableOUs_SelectedIndexChanged;
+            // 
+            // CBADUsers
+            // 
+            CBADUsers.FormattingEnabled = true;
+            CBADUsers.Location = new Point(268, 261);
+            CBADUsers.Name = "CBADUsers";
+            CBADUsers.Size = new Size(340, 23);
+            CBADUsers.TabIndex = 9;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(CBADUsers);
             Controls.Add(CBAvailableOUs);
             Controls.Add(BTNWriteToAd);
             Controls.Add(LBLUserToUpdate);
-            Controls.Add(TBUserToUpdate);
             Controls.Add(LBLMiFareNumber);
             Controls.Add(panel1);
             Name = "MainForm";
@@ -190,9 +192,9 @@
         private Label LBLSvcPassword;
         private Label LBLCardReaderSelection;
         private Panel panel1;
-        private TextBox TBUserToUpdate;
         private Label LBLUserToUpdate;
         private Button BTNWriteToAd;
         private ComboBox CBAvailableOUs;
+        private ComboBox CBADUsers;
     }
 }

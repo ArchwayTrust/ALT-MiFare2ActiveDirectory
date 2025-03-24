@@ -19,6 +19,7 @@ namespace MiFare2ActiveDirectory
         private readonly string[] _cardReaderNames;
 
         private readonly string[] _availableOus;
+        private string[] _availableUsers;
 
 
         private string _cardNumber;
@@ -42,8 +43,13 @@ namespace MiFare2ActiveDirectory
 
             CBAvailableOUs.DataSource = _availableOus;
 
+            _availableUsers = string.IsNullOrEmpty(CBAvailableOUs.Text) ? new string[0] : [.. _adService.GetUsersInOu(CBAvailableOUs.Text)];
+            CBADUsers.DataSource = _availableUsers;
+
             _cardReader = new MiFareCardReader();
             _cardReaderNames = [.. _cardReader.GetAvailableReaders()];
+
+
 
             if (_cardReaderNames.Length == 0)
             {
@@ -51,12 +57,12 @@ namespace MiFare2ActiveDirectory
                 Environment.Exit(1);
             }
 
-            try 
+            try
             {
                 _cardReaderName = _cardReaderNames[_cardReaderId];
             }
             catch
-            { 
+            {
                 _cardReaderName = _cardReaderNames[0];
             }
 
@@ -132,7 +138,7 @@ namespace MiFare2ActiveDirectory
 
         private void BTNWriteToAd_Click(object sender, EventArgs e)
         {
-            string usernameToUpdate = TBUserToUpdate.Text;
+            string usernameToUpdate = CBADUsers.SelectedItem.ToString();
 
             if (MessageBox.Show("Are you sure you want to update AD for " + usernameToUpdate + " with " + _cardNumber + "?", "Confirm Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
@@ -142,5 +148,12 @@ namespace MiFare2ActiveDirectory
                 }
             }
         }
+
+        private void CBAvailableOUs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _availableUsers = [.. _adService.GetUsersInOu(CBAvailableOUs.Text)];
+            CBADUsers.DataSource = _availableUsers;
+        }
     }
 }
+
