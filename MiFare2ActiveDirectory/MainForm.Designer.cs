@@ -37,17 +37,18 @@
             LBLSvcPassword = new Label();
             LBLCardReaderSelection = new Label();
             panel1 = new Panel();
+            CBAvailableOUs = new ComboBox();
             LBLUserToUpdate = new Label();
             BTNWriteToAd = new Button();
-            CBAvailableOUs = new ComboBox();
             CBADUsers = new ComboBox();
+            label1 = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // LBLMiFareNumber
             // 
             LBLMiFareNumber.AutoSize = true;
-            LBLMiFareNumber.Location = new Point(38, 224);
+            LBLMiFareNumber.Location = new Point(52, 41);
             LBLMiFareNumber.Name = "LBLMiFareNumber";
             LBLMiFareNumber.Size = new Size(147, 15);
             LBLMiFareNumber.TabIndex = 4;
@@ -70,9 +71,9 @@
             // 
             // BTNUpdateSvcAccount
             // 
-            BTNUpdateSvcAccount.Location = new Point(176, 106);
+            BTNUpdateSvcAccount.Location = new Point(22, 139);
             BTNUpdateSvcAccount.Name = "BTNUpdateSvcAccount";
-            BTNUpdateSvcAccount.Size = new Size(196, 23);
+            BTNUpdateSvcAccount.Size = new Size(350, 23);
             BTNUpdateSvcAccount.TabIndex = 2;
             BTNUpdateSvcAccount.Text = "Update Settings";
             BTNUpdateSvcAccount.UseVisualStyleBackColor = true;
@@ -89,7 +90,7 @@
             // LBLSvcUsername
             // 
             LBLSvcUsername.AutoSize = true;
-            LBLSvcUsername.Location = new Point(17, 10);
+            LBLSvcUsername.Location = new Point(22, 13);
             LBLSvcUsername.Name = "LBLSvcUsername";
             LBLSvcUsername.Size = new Size(148, 15);
             LBLSvcUsername.TabIndex = 7;
@@ -98,7 +99,7 @@
             // LBLSvcPassword
             // 
             LBLSvcPassword.AutoSize = true;
-            LBLSvcPassword.Location = new Point(20, 39);
+            LBLSvcPassword.Location = new Point(25, 42);
             LBLSvcPassword.Name = "LBLSvcPassword";
             LBLSvcPassword.Size = new Size(145, 15);
             LBLSvcPassword.TabIndex = 8;
@@ -115,22 +116,34 @@
             // 
             // panel1
             // 
+            panel1.BackColor = SystemColors.ActiveCaption;
+            panel1.Controls.Add(label1);
             panel1.Controls.Add(LBLCardReaderSelection);
+            panel1.Controls.Add(CBAvailableOUs);
             panel1.Controls.Add(LBLSvcPassword);
             panel1.Controls.Add(LBLSvcUsername);
             panel1.Controls.Add(CBCardReaders);
             panel1.Controls.Add(BTNUpdateSvcAccount);
             panel1.Controls.Add(TBSvcPassword);
             panel1.Controls.Add(TBSvcUsername);
-            panel1.Location = new Point(405, 12);
+            panel1.Location = new Point(318, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(383, 134);
+            panel1.Size = new Size(383, 178);
             panel1.TabIndex = 3;
+            // 
+            // CBAvailableOUs
+            // 
+            CBAvailableOUs.FormattingEnabled = true;
+            CBAvailableOUs.Location = new Point(176, 97);
+            CBAvailableOUs.Name = "CBAvailableOUs";
+            CBAvailableOUs.Size = new Size(196, 23);
+            CBAvailableOUs.TabIndex = 8;
+            CBAvailableOUs.SelectedIndexChanged += CBAvailableOUs_SelectedIndexChanged;
             // 
             // LBLUserToUpdate
             // 
             LBLUserToUpdate.AutoSize = true;
-            LBLUserToUpdate.Location = new Point(38, 264);
+            LBLUserToUpdate.Location = new Point(52, 65);
             LBLUserToUpdate.Name = "LBLUserToUpdate";
             LBLUserToUpdate.Size = new Size(224, 15);
             LBLUserToUpdate.TabIndex = 6;
@@ -138,38 +151,37 @@
             // 
             // BTNWriteToAd
             // 
-            BTNWriteToAd.Location = new Point(331, 301);
+            BTNWriteToAd.Location = new Point(52, 112);
             BTNWriteToAd.Name = "BTNWriteToAd";
-            BTNWriteToAd.Size = new Size(158, 23);
+            BTNWriteToAd.Size = new Size(224, 23);
             BTNWriteToAd.TabIndex = 7;
             BTNWriteToAd.Text = "Update User in AD";
             BTNWriteToAd.UseVisualStyleBackColor = true;
             BTNWriteToAd.Click += BTNWriteToAd_Click;
             // 
-            // CBAvailableOUs
-            // 
-            CBAvailableOUs.FormattingEnabled = true;
-            CBAvailableOUs.Location = new Point(38, 176);
-            CBAvailableOUs.Name = "CBAvailableOUs";
-            CBAvailableOUs.Size = new Size(750, 23);
-            CBAvailableOUs.TabIndex = 8;
-            CBAvailableOUs.SelectedIndexChanged += CBAvailableOUs_SelectedIndexChanged;
-            // 
             // CBADUsers
             // 
             CBADUsers.FormattingEnabled = true;
-            CBADUsers.Location = new Point(268, 261);
+            CBADUsers.Location = new Point(52, 83);
             CBADUsers.Name = "CBADUsers";
-            CBADUsers.Size = new Size(340, 23);
+            CBADUsers.Size = new Size(224, 23);
             CBADUsers.TabIndex = 9;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(103, 100);
+            label1.Name = "label1";
+            label1.Size = new Size(67, 15);
+            label1.TabIndex = 10;
+            label1.Text = "Staff Group";
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(715, 207);
             Controls.Add(CBADUsers);
-            Controls.Add(CBAvailableOUs);
             Controls.Add(BTNWriteToAd);
             Controls.Add(LBLUserToUpdate);
             Controls.Add(LBLMiFareNumber);
@@ -197,5 +209,6 @@
         private Button BTNWriteToAd;
         private ComboBox CBAvailableOUs;
         private ComboBox CBADUsers;
+        private Label label1;
     }
 }
