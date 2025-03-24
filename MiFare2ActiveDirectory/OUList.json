@@ -1,0 +1,16 @@
+{
+  "OUs": [
+    {
+      "Group": "Emmanuel",
+      "Name": "OU=Staff,OU=Users,OU=The Nottingham Emmanuel School [NES],OU=Archway Learning Trust Super System,DC=BCA,DC=Internal"
+    },
+    {
+      "Group": "Emmanuel",
+      "Name": "OU=Staff,OU=The Nottingham Emmanuel School,OU=User Resources,DC=BCA,DC=Internal"
+    },
+    {
+      "Group": "IT",
+      "Name": "OU=Bluecoat IT,OU=User Resources,DC=BCA,DC=Internal"
+    }
+  ]
+}
