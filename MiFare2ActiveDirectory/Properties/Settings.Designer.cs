@@ -49,13 +49,25 @@ namespace MiFare2ActiveDirectory.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("test")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string SvcUsername {
             get {
                 return ((string)(this["SvcUsername"]));
             }
             set {
                 this["SvcUsername"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string OUGroup {
+            get {
+                return ((string)(this["OUGroup"]));
+            }
+            set {
+                this["OUGroup"] = value;
             }
         }
     }

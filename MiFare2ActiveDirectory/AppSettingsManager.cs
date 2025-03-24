@@ -52,6 +52,20 @@ namespace MiFare2ActiveDirectory
             }
         }
 
+        [UserScopedSetting()]
+        [DefaultSettingValue("")]
+        public string OUGroup
+        {
+            get
+            {
+                return (string)this[nameof(OUGroup)];
+            }
+            set
+            {
+                this[nameof(OUGroup)] = value;
+            }
+        }
+
         private static string EncryptString(System.Security.SecureString input)
         {
             byte[] encryptedData = System.Security.Cryptography.ProtectedData.Protect(System.Text.Encoding.Unicode.GetBytes(ToInsecureString(input)), entropy, System.Security.Cryptography.DataProtectionScope.CurrentUser);

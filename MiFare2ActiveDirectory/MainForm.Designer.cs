@@ -48,7 +48,7 @@
             // LBLMiFareNumber
             // 
             LBLMiFareNumber.AutoSize = true;
-            LBLMiFareNumber.Location = new Point(52, 41);
+            LBLMiFareNumber.Location = new Point(12, 41);
             LBLMiFareNumber.Name = "LBLMiFareNumber";
             LBLMiFareNumber.Size = new Size(147, 15);
             LBLMiFareNumber.TabIndex = 4;
@@ -58,7 +58,7 @@
             // 
             TBSvcUsername.Location = new Point(176, 10);
             TBSvcUsername.Name = "TBSvcUsername";
-            TBSvcUsername.Size = new Size(196, 23);
+            TBSvcUsername.Size = new Size(246, 23);
             TBSvcUsername.TabIndex = 0;
             // 
             // TBSvcPassword
@@ -66,14 +66,14 @@
             TBSvcPassword.Location = new Point(176, 39);
             TBSvcPassword.Name = "TBSvcPassword";
             TBSvcPassword.PasswordChar = '*';
-            TBSvcPassword.Size = new Size(196, 23);
+            TBSvcPassword.Size = new Size(246, 23);
             TBSvcPassword.TabIndex = 1;
             // 
             // BTNUpdateSvcAccount
             // 
             BTNUpdateSvcAccount.Location = new Point(22, 139);
             BTNUpdateSvcAccount.Name = "BTNUpdateSvcAccount";
-            BTNUpdateSvcAccount.Size = new Size(350, 23);
+            BTNUpdateSvcAccount.Size = new Size(400, 23);
             BTNUpdateSvcAccount.TabIndex = 2;
             BTNUpdateSvcAccount.Text = "Update Settings";
             BTNUpdateSvcAccount.UseVisualStyleBackColor = true;
@@ -84,8 +84,9 @@
             CBCardReaders.FormattingEnabled = true;
             CBCardReaders.Location = new Point(176, 68);
             CBCardReaders.Name = "CBCardReaders";
-            CBCardReaders.Size = new Size(196, 23);
+            CBCardReaders.Size = new Size(246, 23);
             CBCardReaders.TabIndex = 6;
+            CBCardReaders.SelectedIndexChanged += CBCardReaders_SelectedIndexChanged;
             // 
             // LBLSvcUsername
             // 
@@ -126,9 +127,9 @@
             panel1.Controls.Add(BTNUpdateSvcAccount);
             panel1.Controls.Add(TBSvcPassword);
             panel1.Controls.Add(TBSvcUsername);
-            panel1.Location = new Point(318, 12);
+            panel1.Location = new Point(278, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(383, 178);
+            panel1.Size = new Size(442, 178);
             panel1.TabIndex = 3;
             // 
             // label1
@@ -145,14 +146,14 @@
             CBAvailableOUs.FormattingEnabled = true;
             CBAvailableOUs.Location = new Point(176, 97);
             CBAvailableOUs.Name = "CBAvailableOUs";
-            CBAvailableOUs.Size = new Size(196, 23);
+            CBAvailableOUs.Size = new Size(246, 23);
             CBAvailableOUs.TabIndex = 8;
             CBAvailableOUs.SelectedIndexChanged += CBAvailableOUs_SelectedIndexChanged;
             // 
             // LBLUserToUpdate
             // 
             LBLUserToUpdate.AutoSize = true;
-            LBLUserToUpdate.Location = new Point(52, 65);
+            LBLUserToUpdate.Location = new Point(12, 65);
             LBLUserToUpdate.Name = "LBLUserToUpdate";
             LBLUserToUpdate.Size = new Size(224, 15);
             LBLUserToUpdate.TabIndex = 6;
@@ -160,7 +161,7 @@
             // 
             // BTNWriteToAd
             // 
-            BTNWriteToAd.Location = new Point(52, 112);
+            BTNWriteToAd.Location = new Point(12, 167);
             BTNWriteToAd.Name = "BTNWriteToAd";
             BTNWriteToAd.Size = new Size(224, 23);
             BTNWriteToAd.TabIndex = 7;
@@ -173,16 +174,16 @@
             CBADUsers.AutoCompleteMode = AutoCompleteMode.Suggest;
             CBADUsers.AutoCompleteSource = AutoCompleteSource.ListItems;
             CBADUsers.FormattingEnabled = true;
-            CBADUsers.Location = new Point(52, 83);
+            CBADUsers.Location = new Point(12, 83);
             CBADUsers.Name = "CBADUsers";
-            CBADUsers.Size = new Size(224, 23);
+            CBADUsers.Size = new Size(260, 23);
             CBADUsers.TabIndex = 9;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(715, 207);
+            ClientSize = new Size(743, 203);
             Controls.Add(CBADUsers);
             Controls.Add(BTNWriteToAd);
             Controls.Add(LBLUserToUpdate);

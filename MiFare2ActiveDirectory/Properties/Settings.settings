@@ -9,7 +9,10 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="SvcUsername" Type="System.String" Scope="User">
-      <Value Profile="(Default)">test</Value>
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="OUGroup" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

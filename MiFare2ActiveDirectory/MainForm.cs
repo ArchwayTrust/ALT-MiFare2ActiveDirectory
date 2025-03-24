@@ -26,7 +26,6 @@ namespace MiFare2ActiveDirectory
             InitializeComponent();
             _appSettingsManager = new AppSettingsManager();
             _cardNumber = "No Card Detected";
-            //_cardReaderName = String.Empty;
 
             _adService = new AdService("BCA.internal", _appSettingsManager.SvcUsername, _appSettingsManager.SvcPassword);
             _cardReader = new MiFareCardReader();
@@ -42,7 +41,7 @@ namespace MiFare2ActiveDirectory
 
             ReadSettings();
             RefreshUserList();
-            
+
         }
 
         private void ReadSettings()
@@ -53,6 +52,7 @@ namespace MiFare2ActiveDirectory
             TBSvcUsername.Text = _adService._svcUsername;
             TBSvcPassword.Text = _adService._svcPassword;
             CBCardReaders.SelectedIndex = _appSettingsManager.CardReaderId;
+            CBAvailableOUs.Text = _appSettingsManager.OUGroup;
         }
 
         private void SaveSettings()
@@ -60,14 +60,17 @@ namespace MiFare2ActiveDirectory
             _appSettingsManager.SvcUsername = TBSvcUsername.Text;
             _appSettingsManager.SvcPassword = TBSvcPassword.Text;
             _appSettingsManager.CardReaderId = CBCardReaders.SelectedIndex;
+            _appSettingsManager.OUGroup = CBAvailableOUs.Text;
 
             _appSettingsManager.Save();
 
             _adService._svcUsername = _appSettingsManager.SvcUsername;
             _adService._svcPassword = _appSettingsManager.SvcPassword;
             _cardReader.CardReaderName = CBCardReaders.Text;
+       
 
             RefreshUserList();
+            RefreshCardReaderList();
 
             MessageBox.Show("Settings saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -106,6 +109,14 @@ namespace MiFare2ActiveDirectory
 
             _cardReader.CardRead += OnCardRead;
 
+            _cardReader.StartMonitoring();
+        }
+
+        private void ChangeCardReader()
+        {
+            _cardReader.StopMonitoring();
+            _cardReader.CardReaderName = CBCardReaders.Text;
+            _cardReader.CardRead += OnCardRead;
             _cardReader.StartMonitoring();
         }
 
@@ -160,6 +171,10 @@ namespace MiFare2ActiveDirectory
             RefreshUserList();
         }
 
+        private void CBCardReaders_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangeCardReader();
+        }
     }
 }
 
