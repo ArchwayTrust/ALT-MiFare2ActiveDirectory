@@ -67,7 +67,6 @@ namespace MiFare2ActiveDirectory
             _adService._svcPassword = _appSettingsManager.SvcPassword;
             _cardReader.CardReaderName = CBCardReaders.Text;
 
-            //RefreshOUList();
             RefreshUserList();
 
             MessageBox.Show("Settings saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -109,12 +108,6 @@ namespace MiFare2ActiveDirectory
 
             _cardReader.StartMonitoring();
         }
-
-        //private void RefreshOUList()
-        //{
-        //    _adService.GetAvailableOUs();
-        //    CBAvailableOUs.DataSource = _adService._availableOus;
-        //}
 
         private void RefreshUserList()
         {

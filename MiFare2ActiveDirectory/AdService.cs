@@ -72,11 +72,12 @@ namespace MiFare2ActiveDirectory
                 List<string> users = GetUsersInOu(distinguishedName);
                 if (users != null)
                 {
-                    allUsers.UnionWith(allUsers);
+                    allUsers.UnionWith(users);
                 }
             }
 
             _availableUsers = [.. allUsers];
+            _availableUsers.Sort();
         }
     }
 }
