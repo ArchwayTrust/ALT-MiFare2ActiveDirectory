@@ -77,7 +77,9 @@ namespace MiFare2ActiveDirectory
                     throw new PCSCException(rc, rc.ToString());
                 }
 
-                var cardNumber = BitConverter.ToString(receiveBuffer, 0, receiveBufferLength).Replace("-", string.Empty);
+                // Exclude the last two bytes (SW1 and SW2) from the card number
+                var cardNumberLength = receiveBufferLength - 2;
+                var cardNumber = BitConverter.ToString(receiveBuffer, 0, cardNumberLength).Replace("-", string.Empty);
                 CardRead?.Invoke(this, cardNumber);
             }
             catch (Exception ex)

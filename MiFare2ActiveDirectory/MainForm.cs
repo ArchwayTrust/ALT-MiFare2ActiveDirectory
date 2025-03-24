@@ -133,7 +133,7 @@ namespace MiFare2ActiveDirectory
             {
                 if (!string.IsNullOrEmpty(usernameToUpdate))
                 {
-                    _adService.UpdateExtensionAttribute14(usernameToUpdate, _cardNumber);
+                    _adService.UpdateExtensionAttribute15(usernameToUpdate, _cardNumber);
                 }
             }
         }
