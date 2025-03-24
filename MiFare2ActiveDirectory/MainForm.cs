@@ -5,22 +5,15 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.Extensions.Configuration;
+using PCSC;
 
 namespace MiFare2ActiveDirectory
 {
     public partial class MainForm : Form
     {
         private readonly AppSettingsManager _appSettingsManager;
-        private string _svcADusername;
-        private string _svcADpassword;
 
-        private int _cardReaderId;
         private string _cardReaderName;
-        private readonly string[] _cardReaderNames;
-
-        private readonly string[] _availableOus;
-        private string[] _availableUsers;
-
 
         private string _cardNumber;
 
@@ -31,82 +24,100 @@ namespace MiFare2ActiveDirectory
         {
             InitializeComponent();
             _appSettingsManager = new AppSettingsManager();
-            _svcADusername = String.Empty;
-            _svcADpassword = String.Empty;
-            _cardReaderId = 0;
             _cardNumber = "No Card Detected";
+            _cardReaderName = String.Empty;
 
-            ReadSettings();
-
-            _adService = new AdService("BCA.internal", _svcADusername, _svcADpassword);
-            _availableOus = [.. _adService.GetAvailableOUs()];
-
-            CBAvailableOUs.DataSource = _availableOus;
-
-            _availableUsers = string.IsNullOrEmpty(CBAvailableOUs.Text) ? new string[0] : [.. _adService.GetUsersInOu(CBAvailableOUs.Text)];
-            CBADUsers.DataSource = _availableUsers;
-
+            _adService = new AdService("BCA.internal", _appSettingsManager.SvcUsername, _appSettingsManager.SvcPassword);
             _cardReader = new MiFareCardReader();
-            _cardReaderNames = [.. _cardReader.GetAvailableReaders()];
+
+        }
 
 
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            RefreshCardReaderList();
+            ReadSettings();
+            RefreshOUList();
+            RefreshUserList();
+            
+        }
 
-            if (_cardReaderNames.Length == 0)
+        private void ReadSettings()
+        {
+            _adService._svcUsername = _appSettingsManager.SvcUsername;
+            _adService._svcPassword = _appSettingsManager.SvcPassword;
+
+            TBSvcUsername.Text = _adService._svcUsername;
+            TBSvcPassword.Text = _adService._svcPassword;
+            CBCardReaders.SelectedIndex = _appSettingsManager.CardReaderId;
+        }
+
+        private void SaveSettings()
+        {;
+            _cardReaderName = CBCardReaders.Text;
+
+            _appSettingsManager.SvcUsername = TBSvcUsername.Text;
+            _appSettingsManager.SvcPassword = TBSvcPassword.Text;
+            _appSettingsManager.CardReaderId = CBCardReaders.SelectedIndex;
+
+            _appSettingsManager.Save();
+
+            _adService._svcUsername = _appSettingsManager.SvcUsername;
+            _adService._svcPassword = _appSettingsManager.SvcPassword;
+
+            RefreshOUList();
+            RefreshUserList();
+
+            MessageBox.Show("Settings saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void RefreshCardReaderList()
+        {
+            _cardReader.StopMonitoring();
+
+            _cardReader.GetAvailableReaders();
+
+            if (_cardReader.CardReaderNames == null || _cardReader.CardReaderNames.Count == 0)
             {
                 MessageBox.Show("No card readers found. Please ensure the reader is connected and drivers are installed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Environment.Exit(1);
             }
 
+            CBCardReaders.DataSource = _cardReader.CardReaderNames;
+
             try
             {
-                _cardReaderName = _cardReaderNames[_cardReaderId];
+                _cardReader.CardReaderName = _cardReader.CardReaderNames[_appSettingsManager.CardReaderId];
             }
             catch
             {
-                _cardReaderName = _cardReaderNames[0];
+                _cardReader.CardReaderName = _cardReader.CardReaderNames[0];
             }
-
-            CBCardReaders.DataSource = _cardReaderNames;
 
             try
             {
-                CBCardReaders.SelectedIndex = _cardReaderId;
+                CBCardReaders.SelectedIndex = _appSettingsManager.CardReaderId;
             }
             catch
             {
                 CBCardReaders.SelectedIndex = 0;
             }
 
-
             _cardReader.CardRead += OnCardRead;
 
-            _cardReader.StartMonitoring(_cardReaderName);
+            _cardReader.StartMonitoring();
         }
 
-        private void ReadSettings()
+        private void RefreshOUList()
         {
-            _svcADusername = _appSettingsManager.SvcUsername;
-            _svcADpassword = _appSettingsManager.SvcPassword;
-            _cardReaderId = _appSettingsManager.CardReaderId;
-
-            TBSvcUsername.Text = _svcADusername;
-            TBSvcPassword.Text = _svcADpassword;
+            _adService.GetAvailableOUs();
+            CBAvailableOUs.DataSource = _adService._availableOus;
         }
 
-        private void SaveSettings()
+        private void RefreshUserList()
         {
-            _svcADusername = TBSvcUsername.Text;
-            _svcADpassword = TBSvcPassword.Text;
-            _cardReaderId = CBCardReaders.SelectedIndex;
-            _cardReaderName = _cardReaderNames[_cardReaderId];
-
-            _appSettingsManager.SvcUsername = _svcADusername;
-            _appSettingsManager.SvcPassword = _svcADpassword;
-            _appSettingsManager.CardReaderId = _cardReaderId;
-
-            _appSettingsManager.Save();
-
-            MessageBox.Show("Settings saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            _adService.GetUsersInOu(CBAvailableOUs.Text);
+            CBADUsers.DataSource = _adService._availableUsers;
         }
 
         private void Btn_UpdateSvcAccount_Click(object sender, EventArgs e)
@@ -138,7 +149,7 @@ namespace MiFare2ActiveDirectory
 
         private void BTNWriteToAd_Click(object sender, EventArgs e)
         {
-            string usernameToUpdate = CBADUsers.SelectedItem.ToString();
+            string usernameToUpdate = CBADUsers.Text;
 
             if (MessageBox.Show("Are you sure you want to update AD for " + usernameToUpdate + " with " + _cardNumber + "?", "Confirm Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
@@ -151,9 +162,10 @@ namespace MiFare2ActiveDirectory
 
         private void CBAvailableOUs_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _availableUsers = [.. _adService.GetUsersInOu(CBAvailableOUs.Text)];
-            CBADUsers.DataSource = _availableUsers;
+            RefreshUserList();
         }
+
+
     }
 }
 

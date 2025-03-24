@@ -6,9 +6,12 @@ namespace MiFare2ActiveDirectory
 {
     public class AdService(string domain, string svcUsername, string svcPassword)
     {
-        private readonly string _svcUsername = svcUsername;
-        private readonly string _svcPassword = svcPassword;
+        public string _svcUsername = svcUsername;
+        public string _svcPassword = svcPassword;
         private readonly string _domain = domain;
+
+        public List<string>? _availableOus;
+        public List<string>? _availableUsers;
 
         public void UpdateExtensionAttribute15(string username, string mifareNumber)
         {
@@ -26,7 +29,7 @@ namespace MiFare2ActiveDirectory
             }
         }
 
-        public List<string> GetAvailableOUs()
+        public void GetAvailableOUs()
         {
             var ous = new HashSet<string>();
             try
@@ -57,9 +60,9 @@ namespace MiFare2ActiveDirectory
 
             var ouList = ous.ToList();
             ouList.Sort();
-            return ouList;
+            this._availableOus = ouList;
         }
-        public List<string> GetUsersInOu(string distinguishedName)
+        public void GetUsersInOu(string distinguishedName)
         {
             var users = new List<string>();
             try
@@ -91,7 +94,7 @@ namespace MiFare2ActiveDirectory
 
             var userList = users.ToList();
             userList.Sort();
-            return userList;
+            this._availableUsers = userList;
         }
     }
 }

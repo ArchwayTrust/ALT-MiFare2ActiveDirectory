@@ -9,9 +9,12 @@ namespace MiFare2ActiveDirectory
     public class MiFareCardReader
     {
         private readonly SCardContext _context;
-        private readonly ISCardMonitor _monitor;
+        private readonly SCardMonitor _monitor;
 
         public event EventHandler<string>? CardRead;
+
+        public List<String>? CardReaderNames;
+        public string? CardReaderName;
 
         public MiFareCardReader()
         {
@@ -22,9 +25,9 @@ namespace MiFare2ActiveDirectory
             _monitor.CardInserted += OnCardInserted;
         }
 
-        public void StartMonitoring(string readerName)
+        public void StartMonitoring()
         {
-            _monitor.Start(readerName);
+            _monitor.Start(this.CardReaderName);
         }
 
         public void StopMonitoring()
@@ -32,15 +35,15 @@ namespace MiFare2ActiveDirectory
             _monitor.Cancel();
         }
 
-        public List<string> GetAvailableReaders()
+        public void GetAvailableReaders()
         {
             try
             {
-                return new List<string>(_context.GetReaders());
+                String[] readers = _context.GetReaders();
+                this.CardReaderNames = [.. readers];
             }
             catch
             {
-                return new List<string>();
             }
         }
 

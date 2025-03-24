@@ -176,6 +176,7 @@
             Controls.Add(panel1);
             Name = "MainForm";
             Text = "ALT MiFare to Active Directory";
+            Load += MainForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
