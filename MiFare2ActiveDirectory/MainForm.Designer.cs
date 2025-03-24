@@ -37,11 +37,11 @@
             LBLSvcPassword = new Label();
             LBLCardReaderSelection = new Label();
             panel1 = new Panel();
+            label1 = new Label();
             CBAvailableOUs = new ComboBox();
             LBLUserToUpdate = new Label();
             BTNWriteToAd = new Button();
             CBADUsers = new ComboBox();
-            label1 = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -131,6 +131,15 @@
             panel1.Size = new Size(383, 178);
             panel1.TabIndex = 3;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(103, 100);
+            label1.Name = "label1";
+            label1.Size = new Size(67, 15);
+            label1.TabIndex = 10;
+            label1.Text = "Staff Group";
+            // 
             // CBAvailableOUs
             // 
             CBAvailableOUs.FormattingEnabled = true;
@@ -161,20 +170,13 @@
             // 
             // CBADUsers
             // 
+            CBADUsers.AutoCompleteMode = AutoCompleteMode.Suggest;
+            CBADUsers.AutoCompleteSource = AutoCompleteSource.ListItems;
             CBADUsers.FormattingEnabled = true;
             CBADUsers.Location = new Point(52, 83);
             CBADUsers.Name = "CBADUsers";
             CBADUsers.Size = new Size(224, 23);
             CBADUsers.TabIndex = 9;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(103, 100);
-            label1.Name = "label1";
-            label1.Size = new Size(67, 15);
-            label1.TabIndex = 10;
-            label1.Text = "Staff Group";
             // 
             // MainForm
             // 

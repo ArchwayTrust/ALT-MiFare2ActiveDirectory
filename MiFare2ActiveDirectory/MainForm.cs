@@ -160,7 +160,6 @@ namespace MiFare2ActiveDirectory
             RefreshUserList();
         }
 
-
     }
 }
 
