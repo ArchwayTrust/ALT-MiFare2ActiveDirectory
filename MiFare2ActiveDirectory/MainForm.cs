@@ -18,6 +18,8 @@ namespace MiFare2ActiveDirectory
         private string _cardReaderName;
         private readonly string[] _cardReaderNames;
 
+        private readonly string[] _availableOus;
+
 
         private string _cardNumber;
 
@@ -36,6 +38,9 @@ namespace MiFare2ActiveDirectory
             ReadSettings();
 
             _adService = new AdService("BCA.internal", _svcADusername, _svcADpassword);
+            _availableOus = [.. _adService.GetAvailableOUs()];
+
+            CBAvailableOUs.DataSource = _availableOus;
 
             _cardReader = new MiFareCardReader();
             _cardReaderNames = [.. _cardReader.GetAvailableReaders()];

@@ -40,6 +40,7 @@
             TBUserToUpdate = new TextBox();
             LBLUserToUpdate = new Label();
             BTNWriteToAd = new Button();
+            CBAvailableOUs = new ComboBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -152,11 +153,20 @@
             BTNWriteToAd.UseVisualStyleBackColor = true;
             BTNWriteToAd.Click += BTNWriteToAd_Click;
             // 
+            // CBAvailableOUs
+            // 
+            CBAvailableOUs.FormattingEnabled = true;
+            CBAvailableOUs.Location = new Point(38, 176);
+            CBAvailableOUs.Name = "CBAvailableOUs";
+            CBAvailableOUs.Size = new Size(750, 23);
+            CBAvailableOUs.TabIndex = 8;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(CBAvailableOUs);
             Controls.Add(BTNWriteToAd);
             Controls.Add(LBLUserToUpdate);
             Controls.Add(TBUserToUpdate);
@@ -183,5 +193,6 @@
         private TextBox TBUserToUpdate;
         private Label LBLUserToUpdate;
         private Button BTNWriteToAd;
+        private ComboBox CBAvailableOUs;
     }
 }
