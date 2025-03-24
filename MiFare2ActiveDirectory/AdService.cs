@@ -10,7 +10,6 @@ namespace MiFare2ActiveDirectory
         public string _svcPassword = svcPassword;
         private readonly string _domain = domain;
 
-        public List<string>? _availableOus;
         public List<string>? _availableUsers;
 
         public void UpdateExtensionAttribute15(string username, string mifareNumber)
@@ -29,40 +28,7 @@ namespace MiFare2ActiveDirectory
             }
         }
 
-        public void GetAvailableOUs()
-        {
-            var ous = new HashSet<string>();
-            try
-            {
-                using var entry = new DirectoryEntry($"LDAP://{_domain}", _svcUsername, _svcPassword);
-                using var searcher = new DirectorySearcher(entry)
-                {
-                    Filter = "(objectClass=organizationalUnit)"
-                };
-                searcher.PropertiesToLoad.Add("distinguishedName");
-
-                foreach (SearchResult result in searcher.FindAll())
-                {
-                    if (result.Properties.Contains("distinguishedName") && result.Properties["distinguishedName"][0] != null)
-                    {
-                        var ouValue = result.Properties["distinguishedName"][0]?.ToString();
-                        if (!string.IsNullOrEmpty(ouValue) && (ouValue.StartsWith("OU=Staff,") || ouValue.StartsWith("OU=Bluecoat IT")) && ( ouValue.Contains("OU=User Resources") || (ouValue.Contains("OU=Archway Learning Trust Super System") && ouValue.Contains("OU=Users"))) && !ouValue.Contains("OU=Leavers"))
-                        {
-                            ous.Add(ouValue);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error retrieving OUs: {ex.Message}");
-            }
-
-            var ouList = ous.ToList();
-            ouList.Sort();
-            this._availableOus = ouList;
-        }
-        public void GetUsersInOu(string distinguishedName)
+        private List<string> GetUsersInOu(string distinguishedName)
         {
             var users = new List<string>();
             try
@@ -94,7 +60,23 @@ namespace MiFare2ActiveDirectory
 
             var userList = users.ToList();
             userList.Sort();
-            this._availableUsers = userList;
+            return userList;
+        }
+
+        public void GetDistinctUsersFromOus(List<string> distinguishedNames)
+        {
+            var allUsers = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+            foreach (var distinguishedName in distinguishedNames)
+            {
+                List<string> users = GetUsersInOu(distinguishedName);
+                if (users != null)
+                {
+                    allUsers.UnionWith(allUsers);
+                }
+            }
+
+            _availableUsers = [.. allUsers];
         }
     }
 }

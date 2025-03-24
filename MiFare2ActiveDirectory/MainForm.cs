@@ -13,31 +13,34 @@ namespace MiFare2ActiveDirectory
     {
         private readonly AppSettingsManager _appSettingsManager;
 
-        private string _cardReaderName;
+        //private string _cardReaderName;
 
         private string _cardNumber;
 
         private readonly AdService _adService;
         private readonly MiFareCardReader _cardReader;
+        private readonly OUListHandler _ouListHandler;
 
         public MainForm()
         {
             InitializeComponent();
             _appSettingsManager = new AppSettingsManager();
             _cardNumber = "No Card Detected";
-            _cardReaderName = String.Empty;
+            //_cardReaderName = String.Empty;
 
             _adService = new AdService("BCA.internal", _appSettingsManager.SvcUsername, _appSettingsManager.SvcPassword);
             _cardReader = new MiFareCardReader();
-
+            _ouListHandler = new OUListHandler("OUList.json");
         }
 
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             RefreshCardReaderList();
+
+            CBAvailableOUs.DataSource = _ouListHandler.GetGroups();
+
             ReadSettings();
-            RefreshOUList();
             RefreshUserList();
             
         }
@@ -53,9 +56,7 @@ namespace MiFare2ActiveDirectory
         }
 
         private void SaveSettings()
-        {;
-            _cardReaderName = CBCardReaders.Text;
-
+        {
             _appSettingsManager.SvcUsername = TBSvcUsername.Text;
             _appSettingsManager.SvcPassword = TBSvcPassword.Text;
             _appSettingsManager.CardReaderId = CBCardReaders.SelectedIndex;
@@ -64,8 +65,9 @@ namespace MiFare2ActiveDirectory
 
             _adService._svcUsername = _appSettingsManager.SvcUsername;
             _adService._svcPassword = _appSettingsManager.SvcPassword;
+            _cardReader.CardReaderName = CBCardReaders.Text;
 
-            RefreshOUList();
+            //RefreshOUList();
             RefreshUserList();
 
             MessageBox.Show("Settings saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -108,15 +110,15 @@ namespace MiFare2ActiveDirectory
             _cardReader.StartMonitoring();
         }
 
-        private void RefreshOUList()
-        {
-            _adService.GetAvailableOUs();
-            CBAvailableOUs.DataSource = _adService._availableOus;
-        }
+        //private void RefreshOUList()
+        //{
+        //    _adService.GetAvailableOUs();
+        //    CBAvailableOUs.DataSource = _adService._availableOus;
+        //}
 
         private void RefreshUserList()
         {
-            _adService.GetUsersInOu(CBAvailableOUs.Text);
+            _adService.GetDistinctUsersFromOus(_ouListHandler.GetOUsByGroup(CBAvailableOUs.Text));
             CBADUsers.DataSource = _adService._availableUsers;
         }
 
