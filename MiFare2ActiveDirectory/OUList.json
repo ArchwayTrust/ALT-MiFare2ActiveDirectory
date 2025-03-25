@@ -1,6 +1,58 @@
 {
   "OUs": [
     {
+      "Group": "Alvaston",
+      "Name": "OU=Staff,OU=Users,OU=Alvaston Moor Academy [AMA],OU=Archway Learning Trust Super System,DC=BCA,DC=Internal"
+    },
+    {
+      "Group": "Alvaston",
+      "Name": "OU=Staff,OU=Users,OU=Alvaston Moor Academy,OU=User Resources,DC=BCA,DC=Internal"
+    },
+    {
+      "Group": "Aspley",
+      "Name": "OU=Staff,OU=Users,OU=Bluecoat Aspley Academy [BAA],OU=Archway Learning Trust Super System,DC=BCA,DC=Internal"
+    },
+    {
+      "Group": "Aspley",
+      "Name": "OU=Staff,OU=Bluecoat Aspley Academy,OU=User Resources,DC=BCA,DC=Internal"
+    },
+    {
+      "Group": "Beechdale",
+      "Name": "OU=Staff,OU=Users,OU=Bluecoat Beechdale Academy [BBA],OU=Archway Learning Trust Super System,DC=BCA,DC=Internal"
+    },
+    {
+      "Group": "Beechdale",
+      "Name": "OU=Staff,OU=Bluecoat Beechdale Academy,OU=User Resources,DC=BCA,DC=Internal"
+    },
+    {
+      "Group": "Bentinck",
+      "Name": "OU=Staff,OU=Users,OU=Bluecoat Bentinck Primary Academy [BNK],OU=Archway Learning Trust Super System,DC=BCA,DC=Internal"
+    },
+    {
+      "Group": "Bluecoat Primary",
+      "Name": "OU=Staff,OU=Users,OU=Bluecoat Primary Academy [BPA],OU=Archway Learning Trust Super System,DC=BCA,DC=Internal"
+    },
+    {
+      "Group": "Bluecoat Primary",
+      "Name": "OU=Staff,OU=Bluecoat Primary Academy,OU=User Resources,DC=BCA,DC=Internal"
+    },
+    {
+      "Group": "Central Trust",
+      "Name": "OU=Staff,OU=Users,OU=Trust Staff [MAT],OU=Archway Learning Trust Super System,DC=BCA,DC=Internal"
+    },
+    {
+      "Group": "Central Trust",
+      "Name": "OU=Staff,OU=Archway Learning Trust,OU=User Resources,DC=BCA,DC=Internal"
+    },
+    {
+      "Group": "Colwick",
+      "Name": "OU=Staff,OU=Users,OU=Colwick St Johns [CSJ],OU=Archway Learning Trust Super System,DC=BCA,DC=Internal"
+    },
+    {
+      "Group": "Colwick",
+      "Name": "OU=Staff,OU=St Johns,OU=User Resources,DC=BCA,DC=Internal"
+    },
+    {
       "Group": "Emmanuel",
       "Name": "OU=Staff,OU=Users,OU=The Nottingham Emmanuel School [NES],OU=Archway Learning Trust Super System,DC=BCA,DC=Internal"
     },
@@ -11,6 +63,46 @@
     {
       "Group": "IT",
       "Name": "OU=Bluecoat IT,OU=User Resources,DC=BCA,DC=Internal"
+    },
+    {
+      "Group": "Lees Brook",
+      "Name": "OU=Staff,OU=Users,OU=Lees Brook Academy [LBA],OU=Archway Learning Trust Super System,DC=BCA,DC=Internal"
+    },
+    {
+      "Group": "Lees Brook",
+      "Name": "OU=Staff,OU=Users,OU=Lees Brook Academy,OU=User Resources,DC=BCA,DC=Internal"
+    },
+    {
+      "Group": "Long Eaton",
+      "Name": "OU=Staff,OU=Users,OU=The Long Eaton School [LES],OU=Archway Learning Trust Super System,DC=BCA,DC=Internal"
+    },
+    {
+      "Group": "Long Eaton",
+      "Name": "OU=Staff,OU=Users,OU=Long Eaton Academy,OU=User Resources,DC=BCA,DC=Internal"
+    },
+    {
+      "Group": "SCITT",
+      "Name": "OU=Staff,OU=Users,OU=Bluecoat Scitt Alliance [SCI],OU=Archway Learning Trust Super System,DC=BCA,DC=Internal"
+    },
+    {
+      "Group": "SCITT",
+      "Name": "OU=Staff,OU=Bluecoat Academy SCITT,OU=User Resources,DC=BCA,DC=Internal"
+    },
+    {
+      "Group": "Trent",
+      "Name": "OU=Staff,OU=Users,OU=Bluecoat Trent Academy [BTA],OU=Archway Learning Trust Super System,DC=BCA,DC=Internal"
+    },
+    {
+      "Group": "Trent",
+      "Name": "OU=Staff,OU=Bluecoat Trent,OU=User Resources,DC=BCA,DC=Internal"
+    },
+    {
+      "Group": "Wollaton",
+      "Name": "OU=Bluecoat Wollaton Academy [BWA],OU=Archway Learning Trust Super System,DC=BCA,DC=Internal"
+    },
+    {
+      "Group": "Wollaton",
+      "Name": "OU=Staff,OU=Bluecoat Wollaton Academy,OU=User Resources,DC=BCA,DC=Internal"
     }
   ]
 }
